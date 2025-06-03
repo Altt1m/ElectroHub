@@ -77,7 +77,7 @@ namespace ElectroHub.Services
         public async Task<ExchangeOffer?> GetByIdAsync(int id)
         {
             return await _context.ExchangeOffers
-                .Include(o => o.AnnouncementExchanges)
+                .Include(o => o.AnnouncementExchanges.Where(o => o.ExchangeOfferId == id))
                 .FirstOrDefaultAsync(o => o.Id == id);
         }
 
@@ -99,7 +99,9 @@ namespace ElectroHub.Services
 
         public async Task<IEnumerable<ExchangeOffer>> GetAllAsync()
         {
-            return await _context.ExchangeOffers.ToListAsync();
+            return await _context.ExchangeOffers
+                .Include(o => o.AnnouncementExchanges)
+                .ToListAsync();
         }
 
         public async Task<ExchangeOffer?> UpdateAsync(int id, ExchangeOfferDto exchangeOfferDto)
