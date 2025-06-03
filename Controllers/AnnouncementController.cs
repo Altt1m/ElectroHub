@@ -59,8 +59,10 @@ namespace ElectroHub.Controllers
 
             try
             {
-                var announcementModel = await _announcementService.CreateAsync(announcementDto, userId);
-                return CreatedAtAction(nameof(GetById), new { id = announcementModel.Id }, announcementModel.ToAnnouncementDto());
+                var announcementModel = announcementDto.ToAnnouncementFromCreateDto();
+                announcementModel.AppUserId = userId;
+                var createdAnnouncement = await _announcementService.CreateAsync(announcementDto, userId);
+                return CreatedAtAction(nameof(GetById), new { id = createdAnnouncement.Id }, announcementModel.ToAnnouncementDto());
             }
             catch (UnauthorizedAccessException ex)
             {

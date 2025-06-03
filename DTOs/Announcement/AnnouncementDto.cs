@@ -15,6 +15,6 @@ namespace ElectroHub.DTOs.Announcement
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public required string AppUserId { get; set; }
-        public CategoryDto Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }

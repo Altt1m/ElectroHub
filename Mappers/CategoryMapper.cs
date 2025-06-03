@@ -10,8 +10,9 @@ namespace ElectroHub.Mappers
         {
             return new CategoryDto
             {
+                Id = categoryModel.Id,
                 Name = categoryModel.Name,
-                ParentCategory = categoryModel.ParentCategory != null ? ToCategoryDto(categoryModel.ParentCategory) : null,
+                ParentCategoryId = categoryModel.ParentCategoryId,
                 Children = categoryModel.Children.Select(c => c.ToCategoryDto()).ToList()
             };
         }

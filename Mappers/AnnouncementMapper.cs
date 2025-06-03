@@ -19,7 +19,7 @@ namespace ElectroHub.Mappers
                 OperationType = announcementModel.OperationType,
                 CreatedAt = DateTime.UtcNow,
                 AppUserId = announcementModel.AppUserId,
-                Category = announcementModel.Category.ToCategoryDto()
+                CategoryId = announcementModel.CategoryId
             };
         }
 
@@ -33,7 +33,8 @@ namespace ElectroHub.Mappers
                 Status = announcementDto.Status,
                 OperationType = announcementDto.OperationType,
                 CreatedAt = DateTime.UtcNow,
-                AppUserId = announcementDto.AppUserId
+                CategoryId = announcementDto.CategoryId,
+                AppUserId = string.Empty
             };
 
         }

@@ -10,7 +10,6 @@ namespace ElectroHub.DTOs.Announcement
         public string Status { get; set; } = string.Empty;
         public string OperationType { get; set; } = string.Empty;
 
-        public string AppUserId { get; set; }
         public int CategoryId { get; set; }
     }
 }
