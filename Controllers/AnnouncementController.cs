@@ -68,6 +68,10 @@ namespace ElectroHub.Controllers
             {
                 return Unauthorized(ex.Message);
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = ex.Message }); // Повідомлення про неіснуючу категорію
+            }
         }
 
         [HttpPut("{id:int}")]

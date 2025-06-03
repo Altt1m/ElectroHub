@@ -65,7 +65,14 @@ namespace ElectroHub.Services
         public async Task<Announcement> CreateAsync(AnnouncementCreateDto dto, string userId)
         {
             var announcement = dto.ToAnnouncementFromCreateDto();
-            announcement.AppUserId = userId; // Встановлюємо UserID із токена
+            announcement.AppUserId = userId;
+
+            // Перевірка існування категорії
+            var categoryExists = await _context.Categories.AnyAsync(c => c.Id == announcement.CategoryId);
+            if (!categoryExists)
+            {
+                throw new ArgumentException("Category with the specified ID does not exist.");
+            }
 
             _context.Announcements.Add(announcement);
             await _context.SaveChangesAsync();
